@@ -47,6 +47,7 @@ export class LoginService {
       EsExitoso: false,
       Status: error.status
     };
+    // aqui hay un error Observable.throw is not a function
     return Observable.throw(json);
   }
 }
