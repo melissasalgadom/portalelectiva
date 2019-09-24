@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginService} from './login.service';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -7,26 +7,31 @@ import {LoginService} from './login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  public email = "";
+  public password = "";
 
   constructor(private loginService: LoginService) {
 
-   }
+  }
 
   ngOnInit() {
   }
 
-  autenticar(){
-    console.log('Autenticando')
-    //this.loginService.autenticarService(' Melissa')
-  
-
-  this.loginService.obtenerProductos().subscribe(dataFinal => {
-    console.log(dataFinal)
+  autenticar() {
+    email: this.email
+    password: this.password
     
-   },
-     error => {
-       console.log(error)
-       
-     });
-    }
+    if (this.email === "" || this.password === "") {
+      alert("Datos erroneos");
+      return;
+    };
+    //this.loginService.autenticarService(' Melissa')
+    console.log('Autenticando')
+    this.loginService.signIn(this.email, this.password)
+      .subscribe(dataFinal => {
+      console.log(dataFinal)
+    }, error => {
+      console.log(error)
+    });
+  }
 }
